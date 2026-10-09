@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr Fabiha Farooq | Premium Dental Clinic in Faisalabad</title>
+    <meta name="description" content="Top-rated dentist in Faisalabad providing Scaling, Root Canal, Crown & Bridge, Aligners, and Cosmetic Dentistry. 5.0 Star rated care.">
+    
+    <!-- Fonts: Inter for body, Playfair Display for headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#F8FBFC',
+                        navy: '#123047',
+                        primary: '#1D8FA8',
+                        aqua: '#DDF4F5',
+                        muted: '#60727D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(18, 48, 71, 0.08)',
+                        'floating': '0 20px 50px -10px rgba(29, 143, 168, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles */
+        body {
+            background-color: #F8FBFC;
+            color: #123047;
+            overflow-x: hidden;
+            cursor: none; /* Hide default cursor on desktop for custom cursor */
+        }
+        
+        /* Mobile Touch - Re-enable default cursor */
+        @media (hover: none) and (pointer: coarse) {
+            body { cursor: auto; }
+            #custom-cursor { display: none !important; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8FBFC; }
+        ::-webkit-scrollbar-thumb { background: #1D8FA8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #123047; }
+
+        /* Custom Cursor */
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #custom-cursor.hovering {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(29, 143, 168, 0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-up.active { opacity: 1; transform: translateY(0); }
+        
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+
+        .stagger-1 { transition-delay: 100ms; }
+        .stagger-2 { transition-delay: 200ms; }
+        .stagger-3 { transition-delay: 300ms; }
+        .stagger-4 { transition-delay: 400ms; }
+
+        /* Smooth Image Zoom */
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img {
+            transition: transform 0.6s ease;
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Carousel Snap */
+        .snap-container {
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+        }
+        .snap-container::-webkit-scrollbar { display: none; }
+        .snap-item { scroll-snap-align: start; }
+
+        /* Animated Connecting Line */
+        .journey-line {
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: linear-gradient(to right, #1D8FA8 50%, #DDF4F5 50%);
+            background-size: 200% 100%;
+            background-position: right bottom;
+            transition: all 1s ease;
+            z-index: 0;
+        }
+        @media (max-width: 768px) {
+            .journey-line { display: none; }
+        }
+
+        /* Glass Header */
+        .glass-header {
+            background: rgba(248, 251, 252, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Blob Animation for Hero */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob { animation: blob 7s infinite; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        
+        /* Modal Animation */
+        #appointmentModal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #appointmentModal > div {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #appointmentModal.hidden-modal {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #appointmentModal.hidden-modal > div {
+            transform: scale(0.95) translateY(20px);
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <!-- Custom Cursor (Desktop) -->
+    <div id="custom-cursor">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C11.5 22 11 21.5 10.8 21L9.5 16C9 14 7 13 5.5 12.5C4 12 3 10.5 3 8.5C3 5 5 2 8 2C9.5 2 11 3 12 4.5C13 3 14.5 2 16 2C19 2 21 5 21 8.5C21 10.5 20 12 18.5 12.5C17 13 15 14 14.5 16L13.2 21C13 21.5 12.5 22 12 22Z" fill="#1D8FA8" fill-opacity="0.8"/>
+        </svg>
+    </div>
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-40 transition-all duration-300" id="main-header">
+        <div class="glass-header w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20 sm:h-24 transition-all" id="header-container">
+                    
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                        <div class="flex flex-col">
+                            <span class="font-serif text-xl sm:text-2xl font-bold text-navy tracking-wide">DR FABIHA FAROOQ</span>
+                            <span class="font-sans text-xs sm:text-sm font-medium text-primary tracking-widest uppercase">Dental Clinic</span>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <nav class="hidden md:flex space-x-8 items-center">
+                        <a href="#about" class="text-sm font-medium text-navy hover:text-primary transition-colors cursor-hover">About</a>
+                        <a href="#services" class="text-sm font-medium text-navy hover:text-primary transition-colors cursor-hover">Services</a>
+                        <a href="#gallery" class="text-sm font-medium text-navy hover:text-primary transition-colors cursor-hover">Smile Gallery</a>
+                        <a href="#reviews" class="text-sm font-medium text-navy hover:text-primary transition-colors cursor-hover">Reviews</a>
+                        <button onclick="openModal()" class="cursor-hover bg-primary text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-navy transition-colors shadow-soft hover:shadow-lg flex items-center gap-2">
+                            Book Appointment <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </nav>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-navy hover:text-primary focus:outline-none p-2">
+                            <i class="fa-solid fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-lg absolute w-full left-0 origin-top animate-fade-in-down">
+            <div class="px-4 pt-2 pb-6 space-y-2 text-center">
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-navy hover:bg-aqua rounded-md">About</a>
+                <a href="#services" class="block px-3 py-3 text-base font-medium text-navy hover:bg-aqua rounded-md">Services</a>
+                <a href="#gallery" class="block px-3 py-3 text-base font-medium text-navy hover:bg-aqua rounded-md">Smile Gallery</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium text-navy hover:bg-aqua rounded-md">Reviews</a>
+                <button onclick="openModal()" class="mt-4 w-full bg-primary text-white px-6 py-3 rounded-full font-medium text-base hover:bg-navy transition-colors shadow-soft">
+                    Book Appointment
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background decorative blobs -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-aqua rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-20 right-10 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                
+                <!-- Text Content -->
+                <div class="reveal-left active z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-aqua text-primary text-xs font-semibold tracking-wide uppercase mb-6">
+                        <i class="fa-solid fa-tooth"></i> Modern Dental Care
+                    </div>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-navy leading-tight mb-6">
+                        Comfortable Care.<br>
+                        <span class="text-primary">Confident Smiles.</span>
+                    </h1>
+                    <p class="text-muted text-lg sm:text-xl mb-8 max-w-lg leading-relaxed">
+                        Experience premium dentistry in Faisalabad. From painless root canals to elegant cosmetic treatments, Dr. Fabiha Farooq ensures a healthy, radiant smile.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="cursor-hover bg-navy text-white px-8 py-4 rounded-full font-semibold text-base hover:bg-primary transition-all shadow-soft hover:shadow-floating flex justify-center items-center gap-2 group">
+                            Book Appointment 
+                            <i class="fa-solid fa-calendar-check group-hover:scale-110 transition-transform"></i>
+                        </button>
+                        <button onclick="openWhatsApp()" class="cursor-hover bg-white border border-gray-200 text-navy px-8 py-4 rounded-full font-semibold text-base hover:border-primary hover:text-primary transition-all shadow-sm flex justify-center items-center gap-2 group">
+                            <i class="fa-brands fa-whatsapp text-green-500 text-xl group-hover:scale-110 transition-transform"></i>
+                            WhatsApp Us
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Image & Floating Card -->
+                <div class="relative lg:h-[600px] flex items-center justify-center reveal-right active">
+                    <div class="relative w-full max-w-md mx-auto">
+                        <!-- Main Image -->
+                        <div class="rounded-[2.5rem] overflow-hidden shadow-2xl relative z-10 aspect-[4/5] img-zoom-container bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" alt="Dr Fabiha Farooq Dental Clinic" class="w-full h-full object-cover">
+                            <!-- Overlay gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent"></div>
+                        </div>
+
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 sm:-left-10 bg-white p-4 sm:p-5 rounded-2xl shadow-floating z-20 flex items-center gap-4 border border-gray-50 animate-[bounce_4s_infinite]">
+                            <div class="bg-yellow-100 p-3 rounded-full text-yellow-500">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div>
+                                <p class="text-navy font-bold text-lg">5.0 Rating</p>
+                                <p class="text-muted text-xs font-medium">Trusted by 64+ Patients</p>
+                            </div>
+                        </div>
+
+                        <!-- Decorative Dots -->
+                        <div class="absolute -top-8 -right-8 z-0 opacity-50">
+                            <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
+                                <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <circle cx="2" cy="2" r="2" fill="#1D8FA8"></circle>
+                                </pattern>
+                                <rect width="100" height="100" fill="url(#dots)"></rect>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="bg-white py-10 border-y border-gray-100 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-gray-100">
+                <div class="px-4 reveal-up stagger-1">
+                    <h3 class="text-3xl font-serif font-bold text-navy mb-1">5.0</h3>
+                    <div class="text-yellow-400 text-sm mb-1"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-xs text-muted font-medium uppercase tracking-wider">Google Reviews</p>
+                </div>
+                <div class="px-4 reveal-up stagger-2">
+                    <h3 class="text-3xl font-serif font-bold text-navy mb-1"><i class="fa-solid fa-user-doctor text-primary"></i></h3>
+                    <p class="text-sm font-semibold text-navy mt-2">Expert Care</p>
+                    <p class="text-xs text-muted mt-1">Highly Qualified</p>
+                </div>
+                <div class="px-4 reveal-up stagger-3">
+                    <h3 class="text-3xl font-serif font-bold text-navy mb-1"><i class="fa-solid fa-microscope text-primary"></i></h3>
+                    <p class="text-sm font-semibold text-navy mt-2">Modern Tech</p>
+                    <p class="text-xs text-muted mt-1">Advanced Equipment</p>
+                </div>
+                <div class="px-4 reveal-up stagger-4">
+                    <h3 class="text-3xl font-serif font-bold text-navy mb-1"><i class="fa-solid fa-venus text-primary"></i></h3>
+                    <p class="text-sm font-semibold text-navy mt-2">Women-Owned</p>
+                    <p class="text-xs text-muted mt-1">Inclusive Clinic</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Image -->
+                <div class="relative reveal-left">
+                    <div class="rounded-3xl overflow-hidden img-zoom-container shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80" alt="Dr Fabiha Farooq" class="w-full h-[500px] object-cover">
+                    </div>
+                    <!-- Decorative element -->
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-aqua rounded-full -z-10"></div>
+                    <div class="absolute top-1/2 -left-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary text-xl">
+                        <i class="fa-solid fa-tooth"></i>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="reveal-right">
+                    <h4 class="text-primary font-semibold tracking-wider uppercase text-sm mb-3">Meet Your Dentist</h4>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy mb-6">Dr. Fabiha Farooq</h2>
+                    <p class="text-muted text-lg mb-6 leading-relaxed">
+                        Dedicated to providing the highest standard of dental care in Faisalabad. Dr. Fabiha Farooq blends advanced medical knowledge with a gentle, patient-first approach to ensure every visit is comfortable and effective.
+                    </p>
+                    <p class="text-muted text-lg mb-8 leading-relaxed">
+                        From routine scaling to complex root canals and aesthetic aligners, our clinic is equipped to handle all your dental needs in a modern, hygienic environment.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-navy font-medium">
+                            <span class="w-6 h-6 rounded-full bg-aqua text-primary flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                            Personalized Treatment Plans
+                        </li>
+                        <li class="flex items-center gap-3 text-navy font-medium">
+                            <span class="w-6 h-6 rounded-full bg-aqua text-primary flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                            Painless Procedures & Gentle Care
+                        </li>
+                        <li class="flex items-center gap-3 text-navy font-medium">
+                            <span class="w-6 h-6 rounded-full bg-aqua text-primary flex items-center justify-center text-xs"><i class="fa-solid fa-check"></i></span>
+                            Strict Sterilization Protocols
+                        </li>
+                    </ul>
+
+                    <button onclick="openModal()" class="cursor-hover text-navy border-b-2 border-primary pb-1 font-semibold hover:text-primary transition-colors flex items-center gap-2 group">
+                        Consult with Dr. Fabiha <i class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+                <h4 class="text-primary font-semibold tracking-wider uppercase text-sm mb-3">Our Services</h4>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy mb-6">Comprehensive Dental Care</h2>
+                <p class="text-muted text-lg">We offer a wide range of premium dental treatments tailored to your unique needs, ensuring a healthy and beautiful smile.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="bg-background rounded-2xl p-8 hover:bg-white hover:shadow-floating transition-all duration-300 group cursor-hover reveal-up stagger-1 border border-transparent hover:border-gray-100">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-tooth"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3 font-serif">Scaling & Polishing</h3>
+                    <p class="text-muted mb-4 line-clamp-3">Professional cleaning to remove plaque and tartar, preventing gum disease and restoring the natural brightness of your teeth.</p>
+                    <a href="javascript:openModal('Scaling & Polishing')" class="text-primary font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Book Service <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-background rounded-2xl p-8 hover:bg-white hover:shadow-floating transition-all duration-300 group cursor-hover reveal-up stagger-2 border border-transparent hover:border-gray-100">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-tooth-crack"></i> <!-- Placeholder icon -->
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3 font-serif">Root Canal Treatment</h3>
+                    <p class="text-muted mb-4 line-clamp-3">Painless endodontic therapy to save infected or damaged teeth, utilizing modern techniques for maximum comfort.</p>
+                    <a href="javascript:openModal('Root Canal Treatment')" class="text-primary font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Book Service <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-background rounded-2xl p-8 hover:bg-white hover:shadow-floating transition-all duration-300 group cursor-hover reveal-up stagger-3 border border-transparent hover:border-gray-100">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3 font-serif">Crown & Bridge</h3>
+                    <p class="text-muted mb-4 line-clamp-3">High-quality artificial teeth and restorative crowns to replace missing teeth and restore full functionality and aesthetics.</p>
+                    <a href="javascript:openModal('Crown & Bridge')" class="text-primary font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Book Service <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-background rounded-2xl p-8 hover:bg-white hover:shadow-floating transition-all duration-300 group cursor-hover reveal-up stagger-1 border border-transparent hover:border-gray-100">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-face-smile"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3 font-serif">Dental Aligners</h3>
+                    <p class="text-muted mb-4 line-clamp-3">Clear, discreet aligners for straightening teeth perfectly without the need for traditional metal braces.</p>
+                    <a href="javascript:openModal('Dental Aligners')" class="text-primary font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Book Service <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-background rounded-2xl p-8 hover:bg-white hover:shadow-floating transition-all duration-300 group cursor-hover reveal-up stagger-2 border border-transparent hover:border-gray-100">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-child"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3 font-serif">Pediatric Dentistry</h3>
+                    <p class="text-muted mb-4 line-clamp-3">Gentle, friendly dental care for children, ensuring their first dental experiences are positive and comfortable.</p>
+                    <a href="javascript:openModal('Pediatric Dentistry')" class="text-primary font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Book Service <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-background rounded-2xl p-8 hover:bg-white hover:shadow-floating transition-all duration-300 group cursor-hover reveal-up stagger-3 border border-transparent hover:border-gray-100">
+                    <div class="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-red-500 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-truck-medical"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3 font-serif">Emergency Services</h3>
+                    <p class="text-muted mb-4 line-clamp-3">Immediate attention for severe toothaches, broken teeth, or other urgent dental issues.</p>
+                    <a href="javascript:openModal('Emergency Care')" class="text-primary font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Book Service <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Journey -->
+    <section class="py-24 bg-navy text-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+                <h4 class="text-primary font-semibold tracking-wider uppercase text-sm mb-3">Your Journey</h4>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold mb-6">4 Steps to a Confident Smile</h2>
+            </div>
+
+            <div class="relative mt-12">
+                <!-- Line for desktop -->
+                <div class="journey-line"></div>
+                
+                <div class="grid md:grid-cols-4 gap-8 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="text-center reveal-up stagger-1">
+                        <div class="w-20 h-20 mx-auto bg-navy border-4 border-primary rounded-full flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-[0_0_20px_rgba(29,143,168,0.4)]">01</div>
+                        <h3 class="text-xl font-bold mb-2">Book Appointment</h3>
+                        <p class="text-gray-400 text-sm">Schedule easily via WhatsApp or our online form.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="text-center reveal-up stagger-2">
+                        <div class="w-20 h-20 mx-auto bg-navy border-4 border-primary rounded-full flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-[0_0_20px_rgba(29,143,168,0.4)]">02</div>
+                        <h3 class="text-xl font-bold mb-2">Meet Your Dentist</h3>
+                        <p class="text-gray-400 text-sm">Comprehensive checkup with Dr. Fabiha in a calm setting.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="text-center reveal-up stagger-3">
+                        <div class="w-20 h-20 mx-auto bg-navy border-4 border-primary rounded-full flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-[0_0_20px_rgba(29,143,168,0.4)]">03</div>
+                        <h3 class="text-xl font-bold mb-2">Treatment Plan</h3>
+                        <p class="text-gray-400 text-sm">Personalized, painless treatment tailored to you.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="text-center reveal-up stagger-4">
+                        <div class="w-20 h-20 mx-auto bg-navy border-4 border-primary rounded-full flex items-center justify-center text-2xl font-bold font-serif mb-6 shadow-[0_0_20px_rgba(29,143,168,0.4)]">04</div>
+                        <h3 class="text-xl font-bold mb-2">Confident Smile</h3>
+                        <p class="text-gray-400 text-sm">Walk out with a healthy, beautiful smile.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative bg -->
+        <div class="absolute top-1/2 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-navy to-navy -z-0 transform -translate-y-1/2"></div>
+    </section>
+
+    <!-- Smile Gallery -->
+    <section id="gallery" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+                <h4 class="text-primary font-semibold tracking-wider uppercase text-sm mb-3">Smile Gallery</h4>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy mb-6">Our Clinic & Results</h2>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                <!-- Image 1 -->
+                <div class="break-inside-avoid reveal-up rounded-2xl overflow-hidden img-zoom-container shadow-md relative group">
+                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=600&q=80" class="w-full h-auto" alt="Modern Dental Clinic">
+                    <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-medium">Modern Equipment</span>
+                    </div>
+                </div>
+                <!-- Image 2 -->
+                <div class="break-inside-avoid reveal-up rounded-2xl overflow-hidden img-zoom-container shadow-md relative group">
+                    <img src="https://images.unsplash.com/photo-1598256989800-fea5f6c8d0bd?auto=format&fit=crop&w=600&q=80" class="w-full h-auto" alt="Dental Treatment">
+                    <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-medium">Patient Comfort</span>
+                    </div>
+                </div>
+                <!-- Image 3 -->
+                <div class="break-inside-avoid reveal-up rounded-2xl overflow-hidden img-zoom-container shadow-md relative group">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80" class="w-full h-auto" alt="Clean Teeth">
+                    <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-medium">Perfect Smiles</span>
+                    </div>
+                </div>
+                 <!-- Image 4 -->
+                 <div class="break-inside-avoid reveal-up rounded-2xl overflow-hidden img-zoom-container shadow-md relative group">
+                    <img src="https://images.unsplash.com/photo-1628177142898-93e46e49658f?auto=format&fit=crop&w=600&q=80" class="w-full h-auto" alt="Dental Checkup">
+                    <div class="absolute inset-0 bg-navy/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-medium">Expert Consultation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal-up">
+                <div class="max-w-2xl">
+                    <h4 class="text-primary font-semibold tracking-wider uppercase text-sm mb-3">Patient Stories</h4>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy">Rated 5.0 on Google</h2>
+                    <p class="text-muted mt-4">Read what our happy patients have to say about their experience.</p>
+                </div>
+                <div class="hidden md:flex gap-4 mt-6 md:mt-0">
+                    <button id="prevReview" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-navy hover:bg-primary hover:text-white hover:border-primary transition-colors"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="nextReview" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-navy hover:bg-primary hover:text-white hover:border-primary transition-colors"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Carousel -->
+            <div class="flex gap-6 overflow-x-auto snap-container pb-8 pt-4 -mx-4 px-4 sm:mx-0 sm:px-0" id="reviewsCarousel">
+                
+                <!-- Review 1 -->
+                <div class="min-w-[300px] md:min-w-[400px] max-w-[400px] bg-background p-8 rounded-2xl snap-item shadow-sm border border-gray-100 shrink-0">
+                    <div class="flex text-yellow-400 text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-navy font-medium italic mb-6 line-clamp-4">"Had a great experience at this best dental clinic for my scaling and cleaning. The dentist was very professional, gentle, and made me feel comfortable throughout the procedure."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-aqua rounded-full flex items-center justify-center text-primary font-bold">A</div>
+                        <div>
+                            <h4 class="font-bold text-navy text-sm">Annuss Afzal</h4>
+                            <p class="text-xs text-muted">Scaling & Cleaning</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="min-w-[300px] md:min-w-[400px] max-w-[400px] bg-background p-8 rounded-2xl snap-item shadow-sm border border-gray-100 shrink-0">
+                    <div class="flex text-yellow-400 text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-navy font-medium italic mb-6 line-clamp-4">"I had done my artificial teeth, root canal and scaling from this doctor.. And I have my best experience from this doctor ✨"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-aqua rounded-full flex items-center justify-center text-primary font-bold">K</div>
+                        <div>
+                            <h4 class="font-bold text-navy text-sm">Kashaf Ajmal</h4>
+                            <p class="text-xs text-muted">Root Canal & Scaling</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="min-w-[300px] md:min-w-[400px] max-w-[400px] bg-background p-8 rounded-2xl snap-item shadow-sm border border-gray-100 shrink-0">
+                    <div class="flex text-yellow-400 text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-navy font-medium italic mb-6 line-clamp-4">"I had my crown Bridge and aligners done, had great experiences with the doctor highly recommend her"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-aqua rounded-full flex items-center justify-center text-primary font-bold">S</div>
+                        <div>
+                            <h4 class="font-bold text-navy text-sm">Sara Hassan</h4>
+                            <p class="text-xs text-muted">Crown Bridge & Aligners</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 4 -->
+                <div class="min-w-[300px] md:min-w-[400px] max-w-[400px] bg-background p-8 rounded-2xl snap-item shadow-sm border border-gray-100 shrink-0">
+                    <div class="flex text-yellow-400 text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-navy font-medium italic mb-6 line-clamp-4">"Had my aligners and scaling whitening treatment done from doctor had great experience highly recommend her for best dental services in Faisalabad"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-aqua rounded-full flex items-center justify-center text-primary font-bold">C</div>
+                        <div>
+                            <h4 class="font-bold text-navy text-sm">Christina Munir</h4>
+                            <p class="text-xs text-muted">Aligners & Whitening</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-background">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal-up">
+                <h4 class="text-primary font-semibold tracking-wider uppercase text-sm mb-3">Got Questions?</h4>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-navy mb-6">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4 reveal-up">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none cursor-hover">
+                        <span class="font-bold text-navy">How can I book an appointment?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-muted">
+                        You can easily book an appointment by clicking the "Book Appointment" button on our website, or by sending us a direct message on WhatsApp at +92 324 7629039.
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none cursor-hover">
+                        <span class="font-bold text-navy">Do you accept emergency dental cases?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-muted">
+                        Yes, we provide emergency dental services. If you are experiencing severe pain, swelling, or trauma to your teeth, please contact our WhatsApp number immediately.
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none cursor-hover">
+                        <span class="font-bold text-navy">Do you offer clear aligners?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-muted">
+                        Yes! We specialize in dental aligners as a modern, invisible alternative to traditional metal braces. Book a consultation to see if they are right for you.
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none cursor-hover">
+                        <span class="font-bold text-navy">Where is the clinic located?</span>
+                        <i class="fa-solid fa-plus text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-muted">
+                        We are located at Prime Care Hospital, Susan Road, Madina Town, Faisalabad, Pakistan.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Section -->
+    <footer class="bg-navy text-white pt-20 pb-10 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <!-- Brand -->
+                <div class="lg:col-span-1">
+                    <div class="flex flex-col mb-6">
+                        <span class="font-serif text-2xl font-bold tracking-wide">DR FABIHA FAROOQ</span>
+                        <span class="font-sans text-sm font-medium text-primary tracking-widest uppercase">Dental Clinic</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Premium dental care in Faisalabad. Combining advanced technology with compassionate care to give you the confident smile you deserve.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-hover"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors cursor-hover"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#about" class="hover:text-primary transition-colors cursor-hover">About Dr. Fabiha</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors cursor-hover">Dental Services</a></li>
+                        <li><a href="#gallery" class="hover:text-primary transition-colors cursor-hover">Smile Gallery</a></li>
+                        <li><a href="#reviews" class="hover:text-primary transition-colors cursor-hover">Patient Reviews</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="lg:col-span-2">
+                    <h4 class="font-serif text-lg font-bold mb-6">Contact & Location</h4>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <ul class="space-y-4 text-gray-400 text-sm">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-location-dot mt-1 text-primary"></i>
+                                <span>Prime Care Hospital, Susan Road,<br>Madina Town, Faisalabad,<br>Pakistan</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-phone text-primary"></i>
+                                <span>+92 324 7629039</span>
+                            </li>
+                        </ul>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10 text-sm">
+                            <h5 class="text-white font-bold mb-2">Ready for a healthier smile?</h5>
+                            <button onclick="openModal()" class="w-full bg-primary text-white py-2 rounded-lg font-medium hover:bg-white hover:text-navy transition-colors cursor-hover">
+                                Book Appointment Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+                <p>&copy; <span id="year"></span> Dr Fabiha Farooq Dental Clinic. All rights reserved.</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors cursor-hover">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors cursor-hover">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <button onclick="openWhatsApp()" class="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-3xl hover:scale-110 transition-transform cursor-hover group">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="absolute right-16 bg-white text-navy text-sm font-bold py-2 px-4 rounded-lg shadow-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+            Chat on WhatsApp
+        </span>
+    </button>
+
+    <!-- Appointment Modal -->
+    <div id="appointmentModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden-modal bg-navy/60 backdrop-blur-sm">
+        <!-- Modal Content -->
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden relative" onclick="event.stopPropagation()">
+            <!-- Close btn -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-navy transition-colors cursor-hover z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <div class="bg-background px-8 py-6 border-b border-gray-100 text-center">
+                <i class="fa-solid fa-calendar-check text-3xl text-primary mb-2"></i>
+                <h3 class="font-serif text-2xl font-bold text-navy">Book Appointment</h3>
+                <p class="text-sm text-muted mt-1">Fill out the form or book directly via WhatsApp.</p>
+            </div>
+
+            <div class="p-8">
+                <form id="bookingForm" class="space-y-4" onsubmit="submitForm(event)">
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1 uppercase tracking-wide">Full Name</label>
+                        <input type="text" id="formName" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1 uppercase tracking-wide">Phone / WhatsApp</label>
+                        <input type="tel" id="formPhone" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1 uppercase tracking-wide">Service</label>
+                        <select id="formService" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none">
+                            <option value="General Consultation">General Consultation</option>
+                            <option value="Scaling & Polishing">Scaling & Polishing</option>
+                            <option value="Root Canal Treatment">Root Canal Treatment</option>
+                            <option value="Crown & Bridge">Crown & Bridge</option>
+                            <option value="Dental Aligners">Dental Aligners</option>
+                            <option value="Pediatric Dentistry">Pediatric Dentistry</option>
+                            <option value="Emergency Care">Emergency Care</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-navy text-white py-4 rounded-xl font-bold hover:bg-primary transition-colors shadow-soft mt-2 cursor-hover">
+                        Request Appointment
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <p class="text-xs text-muted mb-3">OR BOOK INSTANTLY VIA</p>
+                    <button onclick="openWhatsApp()" class="w-full bg-[#25D366] text-white py-3 rounded-xl font-bold hover:bg-[#1EBE5D] transition-colors shadow-soft flex items-center justify-center gap-2 cursor-hover">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Business Configuration ---
+        const clinicConfig = {
+            name: "Dr Fabiha Farooq Dental Clinic",
+            phone: "+92 324 7629039",
+            whatsapp: "923247629039", // Numbers only for WA link
+            email: "contact@drfabihaclinic.com", // Placeholder
+            address: "Prime Care Hospital, Susan Road, Madina Town, Faisalabad, Pakistan",
+            bookingMessage: "Hello, I would like to book a dental appointment at your clinic. Could you please let me know the available timings?"
+        };
+
+        // Set Current Year in Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- 2. WhatsApp Logic ---
+        function openWhatsApp(customMessage = null) {
+            const message = customMessage || clinicConfig.bookingMessage;
+            const url = `https://wa.me/${clinicConfig.whatsapp}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // --- 3. Modal Logic ---
+        const modal = document.getElementById('appointmentModal');
+        const serviceSelect = document.getElementById('formService');
+
+        function openModal(serviceName = null) {
+            modal.classList.remove('hidden-modal');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            if(serviceName) {
+                // Select the specific service if passed
+                const options = serviceSelect.options;
+                for(let i=0; i<options.length; i++) {
+                    if(options[i].value === serviceName) {
+                        serviceSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden-modal');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close on clicking outside modal
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Form Submit Simulation
+        function submitForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('formName').value;
+            const service = document.getElementById('formService').value;
+            
+            const msg = `Hello, my name is ${name}. I would like to book an appointment for ${service}.`;
+            openWhatsApp(msg);
+            closeModal();
+        }
+
+        // --- 4. Custom Mouse Cursor Logic ---
+        const cursor = document.getElementById('custom-cursor');
+        const interactiveElements = document.querySelectorAll('.cursor-hover, a, button, input, select');
+
+        // Only run custom cursor logic if device supports hover
+        if (window.matchMedia("(any-hover: hover)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+            });
+        }
+
+        // --- 5. Scroll Reveal Animations (Intersection Observer) ---
+        const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Reveal only once
+                }
+            });
+        };
+
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- 6. Sticky Header & Mobile Menu ---
+        const header = document.getElementById('main-header');
+        const headerContainer = document.getElementById('header-container');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-sm');
+                headerContainer.classList.remove('h-24');
+                headerContainer.classList.add('h-16');
+            } else {
+                header.classList.remove('shadow-sm');
+                headerContainer.classList.add('h-24');
+                headerContainer.classList.remove('h-16');
+            }
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- 7. FAQ Accordion Logic ---
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                
+                // Toggle current
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-45');
+                
+                // Optional: Close others (accordion style)
+                /*
+                faqBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        otherBtn.nextElementSibling.classList.add('hidden');
+                        otherBtn.querySelector('i').classList.remove('rotate-45');
+                    }
+                });
+                */
+            });
+        });
+
+        // --- 8. Simple Carousel Logic for Reviews ---
+        const carousel = document.getElementById('reviewsCarousel');
+        const prevBtn = document.getElementById('prevReview');
+        const nextBtn = document.getElementById('nextReview');
+
+        if(prevBtn && nextBtn && carousel) {
+            nextBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: 320, behavior: 'smooth' });
+            });
+            prevBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: -320, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body>
+</html>
